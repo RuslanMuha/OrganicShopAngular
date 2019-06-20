@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  padding-left: 5px;
+  font-size: 14px;
+  width: 50%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.adding {
+  margin-top: 10px;
+  float: right;
+}
+
+.icons{
+  width: 6%;
+}
+.delete_icon {
+  color: red;
+}
+label{
+  cursor: pointer;
+}

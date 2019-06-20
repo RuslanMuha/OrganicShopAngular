@@ -1,0 +1,19 @@
+
+.example-container > * {
+  display: inline-block;
+  flex-direction: column;
+  width: 100%;
+}
+
+mat-card-content{
+
+  width: 100%;
+}
+.card-header{
+  text-align: center;
+}
+.img-thumbnail{
+  height: 310px;
+  width: 800px;
+
+}

@@ -1,0 +1,24 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    <mat-icon>{{link.icon}}</mat-icon>{{link.label}}
+  </a>
+  <a mat-tab-link *ngIf="!isAuth()"
+    [routerLink]="loginLink.path"
+    routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    <mat-icon>{{loginLink.icon}}</mat-icon>{{loginLink.label}}
+  </a>
+  <a *ngIf="!isAuth()" mat-tab-link  [matMenuTriggerFor]="menu">{{getUserName()}}<mat-icon>menu</mat-icon></a>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item
+       *ngFor="let link of subLinks"
+       [routerLink]="link.path">
+      {{link.label}}
+    </a>
+  </mat-menu>
+</nav>
+<router-outlet></router-outlet>
