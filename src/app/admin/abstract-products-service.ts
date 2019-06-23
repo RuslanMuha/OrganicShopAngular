@@ -11,7 +11,7 @@ export abstract class ProductsService {
   abstract addProduct(product: Product): Promise<void>;
   abstract deleteProduct(id: string): Promise<void>;
   abstract getProduct(id: string): Observable<Product>;
-  abstract getProducts(): Observable<Product[]>;
+  abstract getProducts(category?: string): Observable<Product[]>;
   abstract updateProduct(product: Product): Promise<void>;
 
 }

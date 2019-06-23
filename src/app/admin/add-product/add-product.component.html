@@ -8,8 +8,8 @@
             <mat-form-field>
               <input matInput placeholder="Title" ngModel name="title" #title='ngModel' required>
               <mat-error *ngIf="title.errors?.required">
-                Title should be provided
-              </mat-error>
+              Title should be provided
+            </mat-error>
             </mat-form-field>
             <mat-form-field>
               <input matInput placeholder="Price" appPrice type="number"  ngModel name="price" #price='ngModel'>

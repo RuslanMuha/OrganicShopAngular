@@ -1,3 +1,40 @@
-<p>
-  home works!
-</p>
+<mat-drawer-container autosize>
+
+  <mat-drawer #drawer class="example-sidenav" mode="over">
+    <h2>Categories</h2>
+    <div *ngFor="let category of categories$|async">
+      <button mat-button (click)="selectCategory(category.id); drawer.toggle().then()">{{category.id}}</button>
+    </div>
+    <div>
+      <button mat-button (click)="selectCategory(); drawer.toggle().then()">all categories</button>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button class="select-category" type="button" mat-button (click)="drawer.toggle().then()">
+      select category
+    </button>
+  </div>
+  <mat-list class="product-list">
+    <mat-grid-list cols="{{columnNum}}" [rowHeight]="rowHeight" >
+          <mat-grid-tile  class="tile-item" *ngFor="let product of products$|async">
+            <mat-card style="display: flex; flex-direction: column; justify-content: center;align-items: center">
+              <mat-card-content>
+                <img [src]="product.imageUrl" alt="product" style="width: 20vw;  height: 18vw; ">
+              </mat-card-content>
+              <mat-card-content>
+                <label class="font-size">{{product.title}}</label>
+              </mat-card-content>
+              <mat-card-content>
+                <label>{{product.price|currency:'USD'}}</label>
+              </mat-card-content>
+              <mat-card-actions>
+                <button style="width: 100%">Add Product</button>
+              </mat-card-actions>
+            </mat-card>
+          </mat-grid-tile>
+    </mat-grid-list>
+  </mat-list>
+</mat-drawer-container>
+
+

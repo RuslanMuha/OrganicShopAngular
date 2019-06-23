@@ -37,9 +37,17 @@ export class ProductsFirebaseService implements ProductsService {
     return this.fireStore.collection<Product>('Products').doc(id).get().pipe(map(p => p.data() as Product));
   }
 
-  getProducts(): Observable<Product[]> {
-    return  this.fireStore.collection<Product>('Products').valueChanges();
+  getProducts(category?: string): Observable<Product[]> {
+    if (!category) {
+      return this.fireStore.collection<Product>(PRODUCTS).valueChanges();
+    }
+    return this.fireStore.collection<Product>(PRODUCTS, ref => {
+      return ref.where('category', '==', category);
+    } ).valueChanges();
   }
+
+
+
 
   updateProduct(product: Product): Promise<void> {
     return this.addUpdate(product);
