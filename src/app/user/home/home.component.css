@@ -21,11 +21,35 @@
 button:focus{
   outline: none!important;
 }
-
-
+.card-prod{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 478px)  {
   .font-size{
     font-size: 0.6rem;
   }
+}
+.img{
+  border-radius: 5%;
+}
+.flex{
+  display: flex;
+}
+.flex .item2 {
+  flex-grow: 1;
+  margin-right:auto;
+}
+.flex .item1 {
+  flex-grow: 2;
+  margin-left:auto;
+}
+.ml-custom-15{
+  margin-left: 136px;
+}
+.mt-custom-1{
+  margin-top: 3px;
 }

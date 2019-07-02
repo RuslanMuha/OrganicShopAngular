@@ -1,0 +1,19 @@
+.product-cart {
+  display: flex;
+  flex-direction: row;
+  width: 17vw;
+}
+
+.product-button {
+  width: 20%;
+}
+
+.product-label {
+  width: 60%;
+  text-align: center;
+  border: solid 1px black;
+}
+
+.product-add-button {
+  width: 100%;
+}

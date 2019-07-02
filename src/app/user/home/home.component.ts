@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   categories$: Observable<Category[]>;
   columnNum = 4;
   rowHeight = '500px';
+  searchText: string;
 
   constructor(private productsService: ProductsFirebaseService, private categoryService: CategoriesService, private media: MediaObserver) {
     this.categories$ = this.categoryService.getCategories();

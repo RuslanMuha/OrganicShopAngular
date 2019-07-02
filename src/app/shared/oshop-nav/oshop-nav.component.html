@@ -5,6 +5,9 @@
      routerLinkActive #rla="routerLinkActive"
      [active]="rla.isActive">
     <mat-icon>{{link.icon}}</mat-icon>{{link.label}}
+    <p>
+   <span *ngIf="isCart(link.label)" [matBadge]="quantity" matBadgeOverlap="false"></span>
+  </p>
   </a>
   <a mat-tab-link *ngIf="!isAuth()"
     [routerLink]="loginLink.path"
@@ -12,7 +15,7 @@
     [active]="rla.isActive">
     <mat-icon>{{loginLink.icon}}</mat-icon>{{loginLink.label}}
   </a>
-  <a *ngIf="!isAuth()" mat-tab-link  [matMenuTriggerFor]="menu">{{getUserName()}}<mat-icon>menu</mat-icon></a>
+  <a *ngIf="isAuth()" mat-tab-link  [matMenuTriggerFor]="menu">{{getUserName()}}<mat-icon>menu</mat-icon></a>
   <mat-menu #menu="matMenu">
     <a mat-menu-item
        *ngFor="let link of subLinks"

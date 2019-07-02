@@ -9,30 +9,39 @@
       <button mat-button (click)="selectCategory(); drawer.toggle().then()">all categories</button>
     </div>
   </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <button class="select-category" type="button" mat-button (click)="drawer.toggle().then()">
-      select category
-    </button>
+  <div class="flex">
+    <div class="item1">
+      <div class="example-sidenav-content">
+        <button class="select-category" type="button" mat-button (click)="drawer.toggle().then()">
+          select category
+        </button>
+      </div>
+    </div>
+    <div class="item2">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-sm ml-custom-15 mt-custom-1 w-75" [(ngModel)]="searchText" type="text"
+             placeholder="Search"
+             aria-label="Search">
+    </div>
   </div>
   <mat-list class="product-list">
-    <mat-grid-list cols="{{columnNum}}" [rowHeight]="rowHeight" >
-          <mat-grid-tile  class="tile-item" *ngFor="let product of products$|async">
-            <mat-card style="display: flex; flex-direction: column; justify-content: center;align-items: center">
-              <mat-card-content>
-                <img [src]="product.imageUrl" alt="product" style="width: 20vw;  height: 18vw; ">
-              </mat-card-content>
-              <mat-card-content>
-                <label class="font-size">{{product.title}}</label>
-              </mat-card-content>
-              <mat-card-content>
-                <label>{{product.price|currency:'USD'}}</label>
-              </mat-card-content>
-              <mat-card-actions>
-                <button style="width: 100%">Add Product</button>
-              </mat-card-actions>
-            </mat-card>
-          </mat-grid-tile>
+    <mat-grid-list cols="{{columnNum}}" [rowHeight]="rowHeight">
+      <mat-grid-tile class="tile-item" *ngFor="let product of products$|async|filter:searchText">
+        <mat-card class="card-prod">
+          <mat-card-content>
+            <img class="img" [src]="product.imageUrl" alt="product" style="width: 20vw;  height: 18vw; ">
+          </mat-card-content>
+          <mat-card-content>
+            <label class="font-size">{{product.title}}</label>
+          </mat-card-content>
+          <mat-card-content>
+            <label>{{product.price|currency:'USD'}}</label>
+          </mat-card-content>
+          <mat-card-actions>
+            <app-product-cart  [product]="product" [productId]="product.id"></app-product-cart>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
     </mat-grid-list>
   </mat-list>
 </mat-drawer-container>

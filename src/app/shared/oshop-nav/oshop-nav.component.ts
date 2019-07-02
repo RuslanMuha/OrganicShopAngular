@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth-service';
+import {CartService} from '../../user/cart.service';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 export interface Link {
   path: string;
@@ -25,8 +28,9 @@ export class OshopNavComponent implements OnInit {
     {path: 'admin/orders', label: 'Manage Orders', icon: ''},
     {path: 'admin/products', label: 'Manage Products', icon: ''},
     {path: 'logout', label: 'Logout', icon: ''}];
+  quantity: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private cartService: CartService) {
   }
 
   isAuth(): boolean {
@@ -45,6 +49,12 @@ export class OshopNavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cartService.getAllProductInCart().subscribe(p => {
+      this.quantity = p ? p.length.toString() : '0';
+    });
   }
 
+  isCart(label: string) {
+    return label === 'Shopping-cart' && this.quantity !== '0';
+  }
 }
