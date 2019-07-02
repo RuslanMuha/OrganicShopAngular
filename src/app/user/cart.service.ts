@@ -77,6 +77,8 @@ export class CartService {
   }
 
   getAllProductInCart(): Observable<ProductCart[]> {
-    return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT).valueChanges();
+    return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT, ref => {
+      return ref.where('cartId', '==', this.cartId);
+  } ).valueChanges();
   }
 }
