@@ -1,28 +1,36 @@
-<mat-list class="product-list">
-  <mat-grid-list cols="1" rowHeight="130px">
-    <mat-grid-tile *ngFor="let product of productCart$|async">
-      <mat-card class="card-prod">
-        <mat-checkbox class="check"></mat-checkbox>
-        <mat-card-content>
-          <img class="img" [src]="product.imageUrl" alt="product">
-        </mat-card-content>
-        <mat-card-content class="content-description">
-          <div class="row">
-            <div><b>title:</b> {{product.title}}</div>
-          </div>
-          <div class="row">
-            <div><b>price:</b> {{product.price|currency}}</div>
-          </div>
-          <div class="row">
-            <app-product-cart class="product-cart" [productId]="product.productId" ></app-product-cart>
-          </div>
-        </mat-card-content>
-      </mat-card>
-      <mat-divider></mat-divider>
-    </mat-grid-tile>
-  </mat-grid-list>
-</mat-list>
-
-
-
-
+<div class="row">
+  <div class="col-8">
+    <mat-list class="product-list">
+      <mat-grid-list cols="1" rowHeight="130px">
+        <div *ngFor="let product of productCart$|async">
+          <mat-grid-tile>
+            <mat-card class="card-prod">
+              <mat-checkbox class="check"></mat-checkbox>
+              <mat-card-content>
+                <img class="img" [src]="product.imageUrl" alt="product">
+              </mat-card-content>
+              <mat-card-content class="content-description">
+                <div class="row">
+                  <div><b>title:</b> {{product.title}}</div>
+                </div>
+                <div class="row">
+                  <div><b>price:</b> {{product.price|currency}}</div>
+                </div>
+                <div class="row">
+                  <app-product-cart class="product-cart" [productId]="product.productId"></app-product-cart>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </mat-list>
+  </div>
+  <div class="col">
+    <mat-card class="card-order">
+      <mat-card-content>
+        <button>To buy</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

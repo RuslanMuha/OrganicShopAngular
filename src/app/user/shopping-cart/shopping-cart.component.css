@@ -1,9 +1,13 @@
 .card-prod {
   display: flex;
-  flex-basis: 90%;
+  flex-basis: 100%;
   margin-right: auto;
 }
-
+.card-order{
+  display: flex;
+  flex-basis: 5%;
+  justify-content: center;
+}
 .img {
   border-radius: 5%;
   width: 6vw;
@@ -16,13 +20,35 @@
 
 .product-list {
   height: 90vh;
-  overflow-y: auto;
+  overflow-y: scroll ;
 }
-
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
 .check {
   display: flex;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.tile2{
+  display: flex;
+  background-color: aqua;
+  order: 1;
+}
+.tile1{
+  display: flex;
+  background-color: red;
+  margin-bottom: auto;
 }
 
 @media all and (min-width:  410px) and (max-width: 567px){

@@ -11,6 +11,7 @@ import {ProductsFirebaseService} from '../../admin/products-firebase.service';
 export class ShoppingCartComponent implements OnInit {
   productCart$: Observable<ProductCart[]>;
    quantity: number;
+
   constructor(private  cartService: CartService) {
   }
 
