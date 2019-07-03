@@ -21,6 +21,7 @@ export interface ProductCart {
   title: string;
   price: number;
   imageUrl: string;
+  totalPrice: number;
 }
 
 @Injectable({
@@ -51,7 +52,8 @@ export class CartService {
       quantity: 1,
       imageUrl: product.imageUrl,
       price: product.price,
-      title: product.title
+      title: product.title,
+      totalPrice: product.price
     };
     return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT).doc(id).set(productCart);
   }
@@ -60,6 +62,8 @@ export class CartService {
     const id = this.cartId + productId;
     // tslint:disable-next-line:max-line-length
     return this.getProductsCart(productId).pipe(map(p => {
+      p.quantity = quantity;
+      p.totalPrice = p.price * quantity;
       this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT).doc(id).set(p);
     }));
 
@@ -77,8 +81,8 @@ export class CartService {
   }
 
   getAllProductInCart(): Observable<ProductCart[]> {
+
     return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT, ref => {
-      return ref.where('cartId', '==', this.cartId);
-  } ).valueChanges();
+      return ref.where('cartId', '==', this.cartId); } ).valueChanges();
   }
 }

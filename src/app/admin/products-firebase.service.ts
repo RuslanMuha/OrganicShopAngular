@@ -42,8 +42,7 @@ export class ProductsFirebaseService implements ProductsService {
       return this.fireStore.collection<Product>(PRODUCTS).valueChanges();
     }
     return this.fireStore.collection<Product>(PRODUCTS, ref => {
-      return ref.where('category', '==', category);
-    } ).valueChanges();
+      return ref.where('category', '==', category); } ).valueChanges();
   }
 
 

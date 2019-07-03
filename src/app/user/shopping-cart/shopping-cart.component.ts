@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CartService, ProductCart} from '../cart.service';
-import {ProductsFirebaseService} from '../../admin/products-firebase.service';
+import {MatSelectionListChange} from '@angular/material';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,24 +9,41 @@ import {ProductsFirebaseService} from '../../admin/products-firebase.service';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
+
   productCart$: Observable<ProductCart[]>;
-   quantity: number;
+  quantity: number;
+  totalPrice = 0;
+  productId: string;
 
   constructor(private  cartService: CartService) {
+
   }
 
   ngOnInit() {
     this.productCart$ = this.cartService.getAllProductInCart();
   }
 
-  subtractQuantity(product: ProductCart) {
-    this.cartService.updateProductCart(product.productId, product.quantity - 1).subscribe(() => {
-     this.quantity = product.quantity - 1;
+
+  selection(change: MatSelectionListChange) {
+    const selected = change.option.selected;
+    change.source.deselectAll();
+    change.option.selected = selected;
+    this.cartService.getProductsCart(change.option.value).subscribe(p => {
+      this.productId = p.productId;
+      if (selected) {
+        this.totalPrice = this.totalPrice + p.totalPrice;
+      } else {
+        this.totalPrice = this.totalPrice - p.totalPrice;
+      }
     });
+
+    // this.products$ = this.productsService.getProducts(!selected ? '' : change.option.value as string);
   }
 
-  addQuantity(product: ProductCart) {
-    this.cartService.updateProductCart(product.productId, product.quantity + 1).subscribe(() =>
-      this.quantity = product.quantity + 1);
+
+  trackByFunction(index: number, product: ProductCart) {
+    return product ? product.cartId : undefined;
   }
+
+
 }

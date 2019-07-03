@@ -5,8 +5,8 @@
 }
 .card-order{
   display: flex;
-  flex-basis: 5%;
-  justify-content: center;
+  /*flex-basis: 5%;*/
+  /*justify-content: center;*/
 }
 .img {
   border-radius: 5%;
@@ -20,20 +20,18 @@
 
 .product-list {
   height: 90vh;
-  overflow-y: scroll ;
+  overflow-y: auto;
+  /*overflow-y: hidden;*/
 }
-html {
-  overflow: scroll;
-  overflow-x: hidden;
-}
+/*html {*/
+/*  overflow: scroll;*/
+/*  overflow-y: hidden;*/
+/*}*/
 ::-webkit-scrollbar {
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
-/* Optional: show position indicator in red */
-::-webkit-scrollbar-thumb {
-  background: #FF0000;
-}
+
 .check {
   display: flex;
   margin-left: 5px;
