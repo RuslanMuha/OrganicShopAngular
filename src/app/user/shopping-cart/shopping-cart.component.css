@@ -1,3 +1,5 @@
+
+
 .card-prod {
   display: flex;
   flex-basis: 100%;
@@ -15,6 +17,7 @@
 }
 
 .product-list {
+  margin-left: 8%;
   height: 90vh;
   overflow-y: auto;
   /*overflow-y: hidden;*/
@@ -111,6 +114,7 @@
 
 
 .flex {
+  background-color: #f2f2f2;
   display: flex;
   max-width: 100%; /* макс ширина блока */
   margin: 0 auto; /* выравниваем блок по центру */
@@ -133,17 +137,39 @@
 
 .card-payment {
   display: flex;
+  margin: 3.7% 8% 0 4% ;
+  height: 70%;
   justify-content: center;
   align-items: center;
-  margin-top: 2.5%;
-  margin-left: 2%;
-  height: 100%;
+}
+
+.card-payment-methods {
+  display: flex;
+  margin: -22% 8% 0 4%;
+  height: 130%;
+  justify-content: center;
+  align-items:flex-start;
 }
 
 .item:first-child {
   margin-bottom: 10px;
 }
-
+.total-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.total1 {
+  display: flex;
+  margin-top: 20%;
+}
+.total2 {
+  display: flex;
+  margin-top: 20%;
+}
+.btn{
+  width: 100%;
+}
 /* меньше 600px */
 @media screen and (max-width: 600px) {
   .flex {

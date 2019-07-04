@@ -34,15 +34,17 @@
     <div class="item">
       <mat-card class="card-payment">
         <mat-card-content>
-          <div>
-           <h4>Total price:{{totalPrice|currency}}</h4>
+          <h2>Order Summary</h2>
+          <div class="total-price">
+              <h4 class="total1">Total </h4>
+              <h4 class="total2">{{totalPrice|currency}}</h4>
           </div>
-          <button type="submit">To buy</button>
+          <button type="submit" class="btn btn-danger">BUY</button>
         </mat-card-content>
       </mat-card>
     </div>
     <div class="item">
-      <mat-card class="card-payment">
+      <mat-card class="card-payment-methods">
         <mat-card-content>
           <div>
             <h3>Payment Methods</h3>
