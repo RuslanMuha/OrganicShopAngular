@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CartService} from '../cart.service';
 import {Product} from '../../admin/abstract-products-service';
+
 
 @Component({
   selector: 'app-product-cart',
@@ -8,6 +9,7 @@ import {Product} from '../../admin/abstract-products-service';
   styleUrls: ['./product-cart.component.css']
 })
 export class ProductCartComponent implements OnInit {
+  @Output() priceOperator = new EventEmitter();
   quantity: number;
   @Input() product: Product;
   @Input() productId: string;
@@ -27,6 +29,9 @@ export class ProductCartComponent implements OnInit {
     } else {
       this.cartService.updateProductCart(this.productId, this.quantity - 1).subscribe(() => {
         --this.quantity;
+        this.cartService.getProductsCart(this.productId).subscribe(p => {
+          this.priceOperator.emit(-p.price);
+        });
       });
     }
 
@@ -34,11 +39,18 @@ export class ProductCartComponent implements OnInit {
   }
 
   addQuantity() {
-    this.cartService.updateProductCart(this.productId, this.quantity + 1).subscribe(() => ++this.quantity);
+    this.cartService.updateProductCart(this.productId, this.quantity + 1).subscribe(() => {
+      ++this.quantity;
+      this.cartService.getProductsCart(this.productId).subscribe(p => {
+        this.priceOperator.emit(p.price);
+      });
+    });
+
   }
 
   addProduct() {
     this.cartService.createProductCart(this.product).then(() => this.quantity = 1);
+
 
   }
 }

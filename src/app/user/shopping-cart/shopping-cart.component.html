@@ -1,11 +1,11 @@
-<div class="row">
-  <div class="col-8">
+<div class="flex">
+  <div class="mainitem">
     <mat-list class="product-list">
       <mat-grid-list cols="1" rowHeight="130px">
         <div *ngFor="let product of productCart$|async; trackBy: trackByFunction">
           <mat-grid-tile>
             <mat-card class="card-prod">
-              <mat-selection-list class="categories" (selectionChange)="selection($event)">
+              <mat-selection-list (selectionChange)="selection($event, product)">
                 <mat-list-option [value]="product.productId">
                 </mat-list-option>
               </mat-selection-list>
@@ -20,7 +20,8 @@
                   <div><b>price:</b> {{product.price|currency}}</div>
                 </div>
                 <div class="row">
-                  <app-product-cart [productId]="product.productId"></app-product-cart>
+                  <app-product-cart (priceOperator)="getQuantity($event)"
+                                    [productId]="product.productId"></app-product-cart>
                 </div>
               </mat-card-content>
             </mat-card>
@@ -29,12 +30,25 @@
       </mat-grid-list>
     </mat-list>
   </div>
-  <div class="col">
-    <mat-card class="card-order">
-      <mat-card-content>
-        Total price:{{totalPrice}}
-        <button type="submit">To buy</button>
-      </mat-card-content>
-    </mat-card>
+  <div class="sideitem">
+    <div class="item">
+      <mat-card class="card-payment">
+        <mat-card-content>
+          <div>
+           <h4>Total price:{{totalPrice|currency}}</h4>
+          </div>
+          <button type="submit">To buy</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="item">
+      <mat-card class="card-payment">
+        <mat-card-content>
+          <div>
+            <h3>Payment Methods</h3>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

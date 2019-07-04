@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CartService, ProductCart} from '../cart.service';
-import {MatSelectionListChange} from '@angular/material';
+import { MatSelectionListChange} from '@angular/material';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,10 +11,8 @@ import {MatSelectionListChange} from '@angular/material';
 export class ShoppingCartComponent implements OnInit {
 
   productCart$: Observable<ProductCart[]>;
-  quantity: number;
   totalPrice = 0;
   productId: string;
-
   constructor(private  cartService: CartService) {
 
   }
@@ -24,20 +22,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
 
-  selection(change: MatSelectionListChange) {
+  selection(change: MatSelectionListChange, product: ProductCart) {
     const selected = change.option.selected;
     change.source.deselectAll();
     change.option.selected = selected;
-    this.cartService.getProductsCart(change.option.value).subscribe(p => {
-      this.productId = p.productId;
-      if (selected) {
-        this.totalPrice = this.totalPrice + p.totalPrice;
+    if (selected) {
+        this.totalPrice = this.totalPrice + product.totalPrice;
       } else {
-        this.totalPrice = this.totalPrice - p.totalPrice;
+        this.totalPrice = this.totalPrice - product.totalPrice;
       }
-    });
-
-    // this.products$ = this.productsService.getProducts(!selected ? '' : change.option.value as string);
   }
 
 
@@ -46,4 +39,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
 
+  getQuantity(price: number) {
+
+      // this.totalPrice = this.totalPrice + price;
+
+  }
 }

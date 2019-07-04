@@ -3,11 +3,7 @@
   flex-basis: 100%;
   margin-right: auto;
 }
-.card-order{
-  display: flex;
-  /*flex-basis: 5%;*/
-  /*justify-content: center;*/
-}
+
 .img {
   border-radius: 5%;
   width: 6vw;
@@ -23,33 +19,24 @@
   overflow-y: auto;
   /*overflow-y: hidden;*/
 }
+
 /*html {*/
 /*  overflow: scroll;*/
 /*  overflow-y: hidden;*/
 /*}*/
 ::-webkit-scrollbar {
-  width: 0;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
-.check {
-  display: flex;
-  margin-left: 5px;
-  margin-right: 5px;
-}
+/*.check {*/
+/*  display: flex;*/
+/*  margin-left: 5px;*/
+/*  margin-right: 5px;*/
+/*}*/
 
-.tile2{
-  display: flex;
-  background-color: aqua;
-  order: 1;
-}
-.tile1{
-  display: flex;
-  background-color: red;
-  margin-bottom: auto;
-}
 
-@media all and (min-width:  410px) and (max-width: 567px){
+@media all and (min-width: 410px) and (max-width: 567px) {
   .img {
     border-radius: 5%;
     width: 18vw;
@@ -57,7 +44,7 @@
   }
 }
 
-@media all and (min-width: 360px) and (max-width: 374px){
+@media all and (min-width: 360px) and (max-width: 374px) {
   .img {
     border-radius: 5%;
     width: 20vw;
@@ -65,7 +52,7 @@
   }
 }
 
-@media all and (min-width: 375px) and (max-width: 413px){
+@media all and (min-width: 375px) and (max-width: 413px) {
   .img {
     border-radius: 5%;
     width: 19vw;
@@ -74,8 +61,7 @@
 }
 
 
-
-@media all and (min-width: 731px) and (max-width: 810px){
+@media all and (min-width: 731px) and (max-width: 810px) {
   .img {
     border-radius: 5%;
     width: 10vw;
@@ -83,21 +69,23 @@
   }
 }
 
-@media all and (min-width: 320px) and (max-width: 359px){
+@media all and (min-width: 320px) and (max-width: 359px) {
   .img {
     border-radius: 5%;
     width: 22vw;
     height: 21vw;
   }
 }
-@media all and (min-width: 568px) and (max-width: 666px){
+
+@media all and (min-width: 568px) and (max-width: 666px) {
   .img {
     border-radius: 5%;
     width: 13vw;
     height: 12vw;
   }
 }
-@media all and (min-width: 667px) and (max-width: 730px){
+
+@media all and (min-width: 667px) and (max-width: 730px) {
   .img {
     border-radius: 5%;
     width: 11vw;
@@ -105,7 +93,7 @@
   }
 }
 
-@media all and (min-width: 812px) and (max-width: 979px){
+@media all and (min-width: 812px) and (max-width: 979px) {
   .img {
     border-radius: 5%;
     width: 9vw;
@@ -113,10 +101,85 @@
   }
 }
 
-@media all and (min-width: 980px ) and (max-width: 1213px){
+@media all and (min-width: 980px ) and (max-width: 1213px) {
   .img {
     border-radius: 5%;
     width: 8vw;
     height: 7vw;
+  }
+}
+
+
+.flex {
+  display: flex;
+  max-width: 100%; /* макс ширина блока */
+  margin: 0 auto; /* выравниваем блок по центру */
+}
+
+.mainitem, .item {
+  flex-grow: 1;
+}
+
+.mainitem {
+  min-height: 300px; /* высота основного блока */
+}
+
+.sideitem {
+  flex-basis: 30%; /* ширина 150 */
+  flex-shrink: 0; /* Убираем уменьшение = 150 */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5%;
+  margin-left: 2%;
+  height: 100%;
+}
+
+.item:first-child {
+  margin-bottom: 10px;
+}
+
+/* меньше 600px */
+@media screen and (max-width: 600px) {
+  .flex {
+    flex-wrap: wrap;
+  }
+
+  /* для переноса */
+  .sideitem {
+    flex-direction: row;
+    flex-basis: 100%;
+  }
+
+  .item {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .item:first-child {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+}
+
+/* меньше 450px */
+@media screen and (max-width: 450px) {
+  .sideitem {
+    flex-wrap: wrap;
+  }
+
+  /* разрешаем перенос */
+  .item {
+    flex-basis: 100%;
+  }
+
+  /* на всю ширину */
+  .item:first-child {
+    margin-right: 0;
   }
 }
