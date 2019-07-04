@@ -57,3 +57,7 @@ button:focus{
   margin-top: 3px;
 }
 
+.home-cart{
+  display: flex;
+  justify-content: center!important;
+}

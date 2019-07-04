@@ -1,6 +1,7 @@
 
 
 .card-prod {
+  margin-left: 8%;
   display: flex;
   flex-basis: 100%;
   margin-right: auto;
@@ -17,7 +18,7 @@
 }
 
 .product-list {
-  margin-left: 8%;
+  /*margin-left: 8%;*/
   height: 90vh;
   overflow-y: auto;
   /*overflow-y: hidden;*/
@@ -32,13 +33,20 @@
   background: transparent; /* Optional: just make scrollbar invisible */
 }
 
-/*.check {*/
-/*  display: flex;*/
-/*  margin-left: 5px;*/
-/*  margin-right: 5px;*/
-/*}*/
 
+.mat-list-option{
+  width: 5% !important;
+}
 
+.icon{
+  margin-left: auto;
+  cursor: pointer;
+  color: #808080;
+}
+.shop-cart{
+  display: flex;
+  margin-right: auto;
+}
 @media all and (min-width: 410px) and (max-width: 567px) {
   .img {
     border-radius: 5%;
@@ -170,6 +178,9 @@
 .btn{
   width: 100%;
   background-color:#ff4747!important;
+}
+mat-selection-list{
+  width: 3px;
 }
 /* меньше 600px */
 @media screen and (max-width: 600px) {
