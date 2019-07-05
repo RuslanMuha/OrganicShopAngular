@@ -177,13 +177,15 @@ mat-selection-list{
   width: 3px;
 }
 .select-all {
+  padding: 3px;
   display: flex;
   flex-direction: row;
-  margin-left: 3%;
+  margin-left: 4.5%;
   align-items: center;
 }
 .select-list-option-all{
-  display: flex;
+
+
 }
 .span-select-all{
   display: flex;
@@ -230,4 +232,8 @@ mat-selection-list{
 .payment{
   display: flex;
   justify-content: space-between;
+}
+.select-list-option-all{
+  width: 16px;
+  height: 16px;
 }

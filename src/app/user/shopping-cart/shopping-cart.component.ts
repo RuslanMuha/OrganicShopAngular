@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CartService, ProductCart} from '../cart.service';
-import {MatSelectionListChange} from '@angular/material';
+import {MatSelectionList, MatSelectionListChange} from '@angular/material';
 import {Router} from '@angular/router';
 import {AuthFirebaseService} from '../../shared/auth-firebase.service';
 
@@ -16,6 +16,7 @@ export class ShoppingCartComponent implements OnInit {
   totalPrice = 0;
   quantitySelected = 0;
   isSelected: boolean;
+  selectedValues: any;
 
   constructor(private  cartService: CartService, private router: Router, private auth: AuthFirebaseService) {
 
@@ -78,4 +79,20 @@ export class ShoppingCartComponent implements OnInit {
 
   }
 
+  selectAll(checkAll: boolean, list: MatSelectionList) {
+    if (checkAll) {
+      list.selectAll();
+      this.cartService.getAllProductInCart().subscribe(pr => {
+        pr.forEach(product => {
+          this.totalPrice = this.totalPrice + product.totalPrice;
+        });
+        this.quantitySelected = pr.length;
+      });
+    } else {
+      list.deselectAll();
+      this.totalPrice = 0;
+      this.quantitySelected = 0;
+    }
+    console.log(this.selectedValues);
+  }
 }

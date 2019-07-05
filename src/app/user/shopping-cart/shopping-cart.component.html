@@ -2,14 +2,13 @@
   <div class="mainitem">
     <mat-list class="product-list">
       <mat-grid-list cols="1" rowHeight="130px">
-        <mat-selection-list (selectionChange)="selection($event)">
+        <mat-selection-list (selectionChange)="selection($event)" #list  [(ngModel)]="selectedValues">
           <mat-grid-tile>
-            <mat-card class="card-prod" style="margin-top: 1%">
+            <mat-card class="card-prod" style="margin-top: -1.2%">
               <mat-card-content>
                 <h2>Shopping cart</h2>
                 <div class="select-all">
-                  <mat-list-option class="select-list-option-all">
-                  </mat-list-option>
+                    <input type="checkbox"  class="select-list-option-all" (click)="selectAll(checkAll.checked, list)" #checkAll>
                   <span class="span-select-all">select all</span>
                 </div>
               </mat-card-content>
