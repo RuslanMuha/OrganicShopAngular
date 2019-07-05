@@ -1,0 +1,22 @@
+.login-card {
+  display: flex;
+  max-width: 400px;
+  margin: 10% auto ;
+  align-items: center;
+  flex-direction: column;
+}
+.action{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.img{
+  padding: 2px;
+}
+.header{
+  margin-right: 11%!important;
+}
+.body{
+  background-color:#fbfbfb;
+}
+

@@ -8,7 +8,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {OrdersComponent as AdminOrders} from '../admin/orders/orders.component';
 import {OrdersComponent as UserOrders} from '../user/orders/orders.component';
 import {ProductsComponent} from '../admin/products/products.component';
-import {MatBadgeModule, MatButtonModule, MatIconModule, MatMenuModule, MatTabsModule} from '@angular/material';
+import {
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatGridListModule,
+  MatIconModule,
+  MatMenuModule,
+  MatTabsModule
+} from '@angular/material';
 import {HomeComponent} from '../user/home/home.component';
 import {ShoppingCartComponent} from '../user/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
@@ -43,7 +51,9 @@ const routes: Routes = [
     MatIconModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatGridListModule,
+    MatCardModule
   ],
   exports: [OshopNavComponent],
   providers: [{provide: AuthService, useClass: AuthFirebaseService}]

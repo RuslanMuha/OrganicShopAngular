@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {CartService, ProductCart} from '../cart.service';
-import {MatListOption, MatSelectionListChange} from '@angular/material';
+import {MatSelectionListChange} from '@angular/material';
 import {Router} from '@angular/router';
 import {AuthFirebaseService} from '../../shared/auth-firebase.service';
 
@@ -28,18 +28,8 @@ export class ShoppingCartComponent implements OnInit {
 
   selection(change: MatSelectionListChange) {
     const values = change.option.selectionList.selectedOptions.selected;
-    if (!change.option.value && values.length === 1) {
-      // change.source.selectAll();
-      // console.log('value');
-      // console.log(change.option.value);
-      // console.log('selected');
-    } else {
-      // change.source.deselectAll();
-
-    }
-
-    console.log(values.map(v => v.value));
     this.quantitySelected = values.length;
+
     let fl = true;
     if (!change.option.selected && values.length === 0) {
       this.totalPrice = 0;
@@ -47,7 +37,6 @@ export class ShoppingCartComponent implements OnInit {
 
     values.map(v => v.value).forEach(id => {
       if (id) {
-        console.log(id);
         this.cartService.getProductsCart(id).subscribe(product => {
           if (fl) {
             this.totalPrice = 0;
@@ -79,10 +68,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   toBuy() {
-    console.log('im bought this product');
-    if (!this.auth.isAuth()) {
-      this.router.navigate(['login']).then();
+    if (this.quantitySelected !== 0) {
+      console.log('im bought this product');
+      if (!this.auth.isAuth()) {
+        this.router.navigate(['login']).then();
+      }
     }
+
 
   }
 

@@ -1,6 +1,5 @@
 <div class="flex">
   <div class="mainitem">
-
     <mat-list class="product-list">
       <mat-grid-list cols="1" rowHeight="130px">
         <mat-selection-list (selectionChange)="selection($event)">
@@ -13,14 +12,13 @@
                   </mat-list-option>
                   <span class="span-select-all">select all</span>
                 </div>
-
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>
           <div *ngFor="let product of productCart$|async; trackBy: trackByFunction">
             <mat-grid-tile>
               <mat-card class="card-prod">
-                <mat-list-option [value]="product.productId" >
+                <mat-list-option [value]="product.productId">
                 </mat-list-option>
                 <mat-card-content>
                   <img class="img" [src]="product.imageUrl" alt="product">
@@ -61,8 +59,11 @@
     <div class="item">
       <mat-card class="card-payment-methods">
         <mat-card-content>
-          <div>
-            <h4>Payment Methods</h4>
+          <h4>Payment Methods</h4>
+          <div class="payment">
+            <img src="../../../assets/visa.png" >
+            <img src="../../../assets/paypal.png" >
+            <img src="../../../assets/mastercard.png" >
           </div>
         </mat-card-content>
       </mat-card>

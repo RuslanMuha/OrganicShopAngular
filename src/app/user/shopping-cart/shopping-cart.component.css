@@ -227,3 +227,7 @@ mat-selection-list{
 /*    margin-right: 0;*/
 /*  }*/
 /*}*/
+.payment{
+  display: flex;
+  justify-content: space-between;
+}
