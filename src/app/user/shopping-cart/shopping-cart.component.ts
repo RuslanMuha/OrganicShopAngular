@@ -71,12 +71,11 @@ export class ShoppingCartComponent implements OnInit {
   toBuy() {
     if (this.quantitySelected !== 0) {
       console.log('im bought this product');
-      if (!this.auth.isAuth()) {
-        this.router.navigate(['login']).then();
-      }
+      // if (!this.auth.isAuth()) {
+      //   this.router.navigate(['login']).then();
+      // }
+      this.router.navigate(['paypal', {cost: this.totalPrice}]).then();
     }
-
-
   }
 
   selectAll(checkAll: boolean, list: MatSelectionList) {

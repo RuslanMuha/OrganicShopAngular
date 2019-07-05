@@ -26,6 +26,8 @@ import {AuthFirebaseService} from './auth-firebase.service';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AddProductComponent} from '../admin/add-product/add-product.component';
 import {EditProductComponent} from '../admin/edit-product/edit-product.component';
+import { PaypalComponent } from './paypal/paypal.component';
+import {NgxPayPalModule} from 'ngx-paypal';
 const routes: Routes = [
   {path: 'admin/orders', component: AdminOrders},
   {path: 'user/orders', component: UserOrders},
@@ -36,10 +38,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'admin/products/add', component: AddProductComponent},
   {path: 'admin/products/edit/:id', component: EditProductComponent},
+  {path: 'paypal', component: PaypalComponent},
   // TODO for all components
 ];
 @NgModule({
-  declarations: [OshopNavComponent, LogoutComponent, LoginComponent],
+  declarations: [OshopNavComponent, LogoutComponent, LoginComponent, PaypalComponent],
   imports: [
     CommonModule,
     UserModule,
@@ -53,9 +56,10 @@ const routes: Routes = [
     AngularFirestoreModule,
     MatBadgeModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    NgxPayPalModule
   ],
-  exports: [OshopNavComponent],
+  exports: [OshopNavComponent, PaypalComponent],
   providers: [{provide: AuthService, useClass: AuthFirebaseService}]
 })
 export class SharedModule { }
