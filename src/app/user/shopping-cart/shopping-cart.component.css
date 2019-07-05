@@ -18,19 +18,13 @@
 }
 
 .product-list {
-  /*margin-left: 8%;*/
   height: 90vh;
   overflow-y: auto;
-  /*overflow-y: hidden;*/
 }
 
-/*html {*/
-/*  overflow: scroll;*/
-/*  overflow-y: hidden;*/
-/*}*/
 ::-webkit-scrollbar {
-  width: 0; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+  width: 0;
+  background: transparent;
 }
 
 
@@ -182,42 +176,54 @@
 mat-selection-list{
   width: 3px;
 }
-/* меньше 600px */
-@media screen and (max-width: 600px) {
-  .flex {
-    flex-wrap: wrap;
-  }
-
-  /* для переноса */
-  .sideitem {
-    flex-direction: row;
-    flex-basis: 100%;
-  }
-
-  .item {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-
-  .item:first-child {
-    margin-bottom: 0;
-    margin-right: 10px;
-  }
+.select-all {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3%;
+  align-items: center;
 }
-
-/* меньше 450px */
-@media screen and (max-width: 450px) {
-  .sideitem {
-    flex-wrap: wrap;
-  }
-
-  /* разрешаем перенос */
-  .item {
-    flex-basis: 100%;
-  }
-
-  /* на всю ширину */
-  .item:first-child {
-    margin-right: 0;
-  }
+.select-list-option-all{
+  display: flex;
 }
+.span-select-all{
+  display: flex;
+  margin-left: 12%;
+}
+/*@media screen and (max-width: 600px) {*/
+/*  .flex {*/
+/*    flex-wrap: wrap;*/
+/*  }*/
+
+/* */
+/*  .sideitem {*/
+/*    flex-direction: row;*/
+/*    flex-basis: 100%;*/
+/*  }*/
+
+/*  .item {*/
+/*    margin-left: 0;*/
+/*    margin-top: 10px;*/
+/*  }*/
+
+/*  .item:first-child {*/
+/*    margin-bottom: 0;*/
+/*    margin-right: 10px;*/
+/*  }*/
+/*}*/
+
+
+/*@media screen and (max-width: 450px) {*/
+/*  .sideitem {*/
+/*    flex-wrap: wrap;*/
+/*  }*/
+
+/*   разрешаем перенос */
+/*  .item {*/
+/*    flex-basis: 100%;*/
+/*  }*/
+
+/*  !* на всю ширину *!*/
+/*  .item:first-child {*/
+/*    margin-right: 0;*/
+/*  }*/
+/*}*/
