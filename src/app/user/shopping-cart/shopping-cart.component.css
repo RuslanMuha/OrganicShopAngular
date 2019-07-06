@@ -236,10 +236,7 @@ mat-selection-list {
     font-size: 1rem;
   }
 
-  .product-list {
-    height: 200vw;
-    overflow-y: auto;
-  }
+
 
   .pay {
   height: -webkit-fill-available!important;
@@ -250,6 +247,32 @@ mat-selection-list {
   }
 }
 
+@media all and  (max-height: 900px ) and (max-width: 420px){
+  .product-list {
+    height: 165vw;
+    overflow-y: auto;
+  }
+}
+
+@media all and  (max-height: 820px ) and (max-width: 420px){
+  .product-list {
+    height: 175vw;
+    overflow-y: auto;
+  }
+}
+
+@media all and (max-height: 740px ) and (max-width: 420px) {
+  .product-list {
+    height: 140vw;
+    overflow-y: auto;
+  }
+}
+@media all and (max-height: 570px ) {
+  .product-list {
+    height: 135vw;
+    overflow-y: auto;
+  }
+}
 
 @media all and (min-width: 410px) and (max-width: 567px) {
   .img {
