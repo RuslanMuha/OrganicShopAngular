@@ -6,7 +6,7 @@
           <mat-grid-tile>
             <mat-card class="card-prod" style="margin-top: -1.2%">
               <mat-card-content>
-                <h2>Shopping cart</h2>
+                <span class="shopping-cart-span">Shopping cart</span>
                 <div class="select-all">
                     <input type="checkbox"  class="select-list-option-all" (click)="selectAll(checkAll.checked, list)" #checkAll>
                   <span class="span-select-all">select all</span>
@@ -17,7 +17,7 @@
           <div *ngFor="let product of productCart$|async; trackBy: trackByFunction">
             <mat-grid-tile>
               <mat-card class="card-prod">
-                <mat-list-option [value]="product.productId">
+                <mat-list-option [value]="product.productId" class="list-option">
                 </mat-list-option>
                 <mat-card-content>
                   <img class="img" [src]="product.imageUrl" alt="product">
@@ -45,13 +45,13 @@
   <div class="sideitem">
     <div class="item">
       <mat-card class="card-payment">
-        <mat-card-content>
-          <h2>Order Summary</h2>
+        <mat-card-content class="card-content">
+          <span class="order-summary">Order Summary</span>
           <div class="total-price">
-            <h4 class="total1">Total </h4>
-            <h4 class="total2">{{totalPrice|currency}}</h4>
+            <span class="total1">Total </span>
+            <span class="total2">{{totalPrice|currency}}</span>
           </div>
-          <button class="btn btn-danger" (click)="toBuy()">BUY({{quantitySelected}})</button>
+          <button class="btn btn-danger btn-buy" (click)="toBuy()">BUY({{quantitySelected}})</button>
         </mat-card-content>
       </mat-card>
     </div>
