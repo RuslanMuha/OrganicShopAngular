@@ -11,6 +11,9 @@
   width: 6vw;
   height: 5vw;
 }
+.row{
+  margin-left: 0;
+}
 
 .content-description {
   margin-left: 18px;

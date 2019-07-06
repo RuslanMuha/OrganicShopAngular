@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   width: 17vw;
-  /*justify-content: center;*/
+  justify-content: center;
 }
 
 .product-button {
@@ -23,3 +23,17 @@
   font-size: 0.75rem!important;
 }
 
+@media all and (max-width: 420px) {
+  .product-cart {
+    display: flex;
+    flex-direction: row;
+    width: 40vw;
+    justify-content: center;
+  }
+
+  .product-button {
+    width: 20%;
+    padding: 0;
+    border-radius: 20px;
+  }
+}
