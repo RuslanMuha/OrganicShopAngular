@@ -119,13 +119,14 @@ mat-selection-list {
   padding: 3px;
   display: flex;
   flex-direction: row;
-  margin-left: 4.5%;
+  margin-left: 1%;
   align-items: center;
+  width: 60vw;
 }
 
 .span-select-all {
   display: flex;
-  margin-left: 12%;
+  margin-left: 0;
 }
 
 .payment {
@@ -247,6 +248,16 @@ mat-selection-list {
 
   .method-pay {
     height: 0;
+  }
+
+  .select-all {
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 4.5%;
+    align-items: center;
+    width: 60vw;
+    justify-content: space-between;
   }
 }
 

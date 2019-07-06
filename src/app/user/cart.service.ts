@@ -85,4 +85,11 @@ export class CartService {
     return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT, ref => {
       return ref.where('cartId', '==', this.cartId); } ).valueChanges();
   }
+  removeAll(): Observable<void> {
+   return this.getAllProductInCart().pipe(map(product => {
+      product.forEach(p => {
+        this.removeProductCart(p.productId).then();
+      });
+    }));
+  }
 }

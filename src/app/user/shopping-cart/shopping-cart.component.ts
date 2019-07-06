@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
 import {CartService, ProductCart} from '../cart.service';
 import {MatSelectionList, MatSelectionListChange} from '@angular/material';
 import {Router} from '@angular/router';
@@ -10,14 +10,13 @@ import {AuthFirebaseService} from '../../shared/auth-firebase.service';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   productCart$: Observable<ProductCart[]>;
   totalPrice = 0;
   quantitySelected = 0;
-  isSelected: boolean;
-  selectedValues: any;
-
+  selectedValues: string [];
+  subscription: Subscription;
   constructor(private  cartService: CartService, private router: Router, private auth: AuthFirebaseService) {
 
   }
@@ -30,23 +29,20 @@ export class ShoppingCartComponent implements OnInit {
   selection(change: MatSelectionListChange) {
     const values = change.option.selectionList.selectedOptions.selected;
     this.quantitySelected = values.length;
-
+    console.log( values.map(v => v.value));
     let fl = true;
     if (!change.option.selected && values.length === 0) {
       this.totalPrice = 0;
     }
 
     values.map(v => v.value).forEach(id => {
-      if (id) {
-        this.cartService.getProductsCart(id).subscribe(product => {
+       this.subscription = this.cartService.getProductsCart(id).subscribe(product => {
           if (fl) {
             this.totalPrice = 0;
             fl = false;
           }
           this.totalPrice = this.totalPrice + product.totalPrice;
         });
-      }
-
     });
 
 
@@ -71,9 +67,9 @@ export class ShoppingCartComponent implements OnInit {
   toBuy() {
     if (this.quantitySelected !== 0) {
       console.log('im bought this product');
-      // if (!this.auth.isAuth()) {
-      //   this.router.navigate(['login']).then();
-      // }
+      if (!this.auth.isAuth()) {
+        this.router.navigate(['login']).then();
+      }
       this.router.navigate(['paypal', {cost: this.totalPrice}]).then();
     }
   }
@@ -82,6 +78,7 @@ export class ShoppingCartComponent implements OnInit {
     if (checkAll) {
       list.selectAll();
       this.cartService.getAllProductInCart().subscribe(pr => {
+        this.totalPrice = 0;
         pr.forEach(product => {
           this.totalPrice = this.totalPrice + product.totalPrice;
         });
@@ -93,5 +90,20 @@ export class ShoppingCartComponent implements OnInit {
       this.quantitySelected = 0;
     }
     console.log(this.selectedValues);
+  }
+
+  deleteAll() {
+   this.subscription =  this.cartService.removeAll().subscribe(() => {
+      this.totalPrice = 0;
+      this.quantitySelected = 0;
+    });
+
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
   }
 }

@@ -8,8 +8,10 @@
               <mat-card-content>
                 <span class="shopping-cart-span">Shopping cart</span>
                 <div class="select-all">
-                    <input type="checkbox"  class="select-list-option-all" (click)="selectAll(checkAll.checked, list)" #checkAll>
-                  <span class="span-select-all">select all</span>
+                    <input type="checkbox"  class="select-list-option-all" (click)="selectAll(checkAll.checked, list)" #checkAll>&emsp;
+                  <span class="span-select-all">select all</span>&emsp;
+                  <mat-icon class="delete-all icon" (click)="deleteAll()">delete_forever</mat-icon>&emsp;
+                  <span class="span-select-all">delete all</span>
                 </div>
               </mat-card-content>
             </mat-card>
