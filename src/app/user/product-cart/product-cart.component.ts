@@ -9,7 +9,6 @@ import {Product} from '../../admin/abstract-products-service';
   styleUrls: ['./product-cart.component.css']
 })
 export class ProductCartComponent implements OnInit {
-  @Output() priceOperator = new EventEmitter();
   quantity: number;
   @Input() product: Product;
   @Input() productId: string;
@@ -21,6 +20,7 @@ export class ProductCartComponent implements OnInit {
     this.cartService.getProductsCart(this.productId).subscribe(p => {
       this.quantity = p ? p.quantity : 0;
     });
+
   }
 
   subtractQuantity() {
@@ -29,9 +29,6 @@ export class ProductCartComponent implements OnInit {
     } else {
       this.cartService.updateProductCart(this.productId, this.quantity - 1).subscribe(() => {
         --this.quantity;
-        this.cartService.getProductsCart(this.productId).subscribe(p => {
-          this.priceOperator.emit(-p.price);
-        });
       });
     }
 
@@ -41,9 +38,6 @@ export class ProductCartComponent implements OnInit {
   addQuantity() {
     this.cartService.updateProductCart(this.productId, this.quantity + 1).subscribe(() => {
       ++this.quantity;
-      this.cartService.getProductsCart(this.productId).subscribe(p => {
-        this.priceOperator.emit(p.price);
-      });
     });
 
   }

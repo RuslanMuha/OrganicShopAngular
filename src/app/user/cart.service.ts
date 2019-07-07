@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {Action, AngularFirestore, DocumentSnapshot} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Product} from '../admin/abstract-products-service';
@@ -29,6 +29,7 @@ export interface ProductCart {
 })
 export class CartService {
   cartId: string;
+  products: Observable<ProductCart> [];
 
   constructor(private fireStore: AngularFirestore) {
     if (!localStorage.getItem(CartConfig.CART_ID)) {
@@ -83,10 +84,19 @@ export class CartService {
   getAllProductInCart(): Observable<ProductCart[]> {
 
     return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT, ref => {
-      return ref.where('cartId', '==', this.cartId); } ).valueChanges();
+      return ref.where('cartId', '==', this.cartId);
+    }).valueChanges();
   }
+
+  getProductsSelected(productId: string): Observable<ProductCart> {
+    return this.fireStore.collection<ProductCart>(CartConfig.CART_PRODUCT).doc(this.cartId + productId)
+      .snapshotChanges().pipe(map(p => p.payload.data() as ProductCart));
+  }
+
+
+
   removeAll(): Observable<void> {
-   return this.getAllProductInCart().pipe(map(product => {
+    return this.getAllProductInCart().pipe(map(product => {
       product.forEach(p => {
         this.removeProductCart(p.productId).then();
       });

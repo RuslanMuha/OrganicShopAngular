@@ -17,6 +17,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   quantitySelected = 0;
   selectedValues: string [];
   subscription: Subscription;
+
   constructor(private  cartService: CartService, private router: Router, private auth: AuthFirebaseService) {
 
   }
@@ -29,23 +30,17 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   selection(change: MatSelectionListChange) {
     const values = change.option.selectionList.selectedOptions.selected;
     this.quantitySelected = values.length;
-    console.log( values.map(v => v.value));
-    let fl = true;
     if (!change.option.selected && values.length === 0) {
       this.totalPrice = 0;
     }
-
-    values.map(v => v.value).forEach(id => {
-       this.subscription = this.cartService.getProductsCart(id).subscribe(product => {
-          if (fl) {
-            this.totalPrice = 0;
-            fl = false;
-          }
-          this.totalPrice = this.totalPrice + product.totalPrice;
-        });
+    this.subscription = this.cartService.getAllProductInCart().subscribe(product => {
+      this.totalPrice = 0;
+      product.forEach(p => {
+        if (values.map(v => v.value).includes(p.productId)) {
+          this.totalPrice = this.totalPrice + p.totalPrice;
+        }
+      });
     });
-
-
   }
 
 
@@ -61,7 +56,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   delete(productId: string) {
-    this.cartService.removeProductCart(productId).then();
+    this.cartService.removeProductCart(productId).then(() =>{
+      this.quantitySelected = this.quantitySelected - 1;
+    });
   }
 
   toBuy() {
@@ -69,15 +66,17 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       console.log('im bought this product');
       if (!this.auth.isAuth()) {
         this.router.navigate(['login']).then();
+      } else {
+
+        this.router.navigate(['paypal', {cost: this.totalPrice}]).then();
       }
-      this.router.navigate(['paypal', {cost: this.totalPrice}]).then();
     }
   }
 
   selectAll(checkAll: boolean, list: MatSelectionList) {
     if (checkAll) {
       list.selectAll();
-      this.cartService.getAllProductInCart().subscribe(pr => {
+      this.subscription = this.cartService.getAllProductInCart().subscribe(pr => {
         this.totalPrice = 0;
         pr.forEach(product => {
           this.totalPrice = this.totalPrice + product.totalPrice;
@@ -86,6 +85,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       });
     } else {
       list.deselectAll();
+      this.subscription.unsubscribe();
       this.totalPrice = 0;
       this.quantitySelected = 0;
     }
@@ -93,7 +93,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   deleteAll() {
-   this.subscription =  this.cartService.removeAll().subscribe(() => {
+    this.subscription = this.cartService.removeAll().subscribe(() => {
       this.totalPrice = 0;
       this.quantitySelected = 0;
     });
