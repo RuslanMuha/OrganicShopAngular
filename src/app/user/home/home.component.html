@@ -37,7 +37,9 @@
             <label>{{product.price|currency:'USD'}}</label>
           </mat-card-content>
           <mat-card-actions>
+            <div class="container">
             <app-product-cart  class="home-cart" [product]="product" [productId]="product.id"></app-product-cart>
+            </div>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
