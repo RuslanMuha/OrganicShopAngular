@@ -5,18 +5,45 @@
   flex-basis: 100%;
   margin-right: auto;
 }
+.shopping-cart-delete-all   {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  align-items: center;
+}
+.delete-all {
+  margin-left: auto;
+  cursor: pointer;
+  color: crimson;
+
+}
+.delete {
+  margin-left: auto;
+  cursor: pointer;
+  color: #808080;
+  display: flex;
+  order: 2;
+}
+.shopping-cart-span {
+  font-size: 1.5rem;
+}
 
 .img {
   border-radius: 5%;
   width: 6vw;
   height: 5vw;
 }
-.row{
-  margin-left: 0;
+.one-row{
+  display: flex;
 }
+.price{
 
+}
 .content-description {
+  display: flex;
+  flex-direction: column;
   margin-left: 18px;
+  flex-basis: 100%;
 }
 
 .product-list {
@@ -30,14 +57,9 @@
 }
 
 
-.mat-list-option {
-  width: 5% !important;
-}
 
 .icon {
-  margin-left: auto;
-  cursor: pointer;
-  color: #808080;
+
 }
 
 .shop-cart {
@@ -115,37 +137,17 @@ mat-selection-list {
   width: 3px;
 }
 
-.select-all {
-  padding: 3px;
-  display: flex;
-  flex-direction: row;
-  margin-left: 1%;
-  align-items: center;
-  width: 60vw;
-}
-
-.span-select-all {
-  display: flex;
-  margin-left: 0;
-}
-
 .payment {
   display: flex;
   justify-content: space-between;
 }
 
-.select-list-option-all {
-  width: 16px;
-  height: 16px;
-}
 
 .order-summary {
   font-size: 1.6rem;
 }
 
-.shopping-cart-span {
-  font-size: 1.5rem;
-}
+
 
 @media screen and (max-width: 600px) {
   .flex {
@@ -175,7 +177,9 @@ mat-selection-list {
     height: 0;
   }
 
-
+.flex{
+  flex-direction: column;
+}
   .item {
     flex-basis: 100%;
   }
@@ -232,9 +236,6 @@ mat-selection-list {
     flex-basis: 100%;
   }
 
-  .list-option {
-    margin-right: 5%;
-  }
 
   .shopping-cart-span {
     font-size: 1rem;
@@ -249,16 +250,10 @@ mat-selection-list {
   .method-pay {
     height: 0;
   }
+body{
+  width: 100%;
+}
 
-  .select-all {
-    padding: 3px;
-    display: flex;
-    flex-direction: row;
-    margin-left: 4.5%;
-    align-items: center;
-    width: 60vw;
-    justify-content: space-between;
-  }
 }
 
 @media all and  (max-height: 900px ) and (max-width: 420px){

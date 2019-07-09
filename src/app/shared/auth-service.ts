@@ -11,7 +11,7 @@ export abstract class AuthService {
 
   abstract getUser(): User;
 
-  abstract login(loginMethod: string);
+  abstract login(loginMethod: string): Promise<any>;
 
   abstract logout();
 

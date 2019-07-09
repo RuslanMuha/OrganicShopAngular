@@ -3,6 +3,7 @@ import {AuthService, User} from './auth-service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Router} from '@angular/router';
 
 interface Administrators {
   uid: string;
@@ -43,15 +44,15 @@ export class AuthFirebaseService implements AuthService {
 
   }
 
-  login(loginMethod: string) {
+  login(loginMethod: string): Promise<any> {
     if (loginMethod === 'google') {
-      this.loginWithGoogle();
+     return  this.loginWithGoogle();
     }
     if (loginMethod === 'facebook') {
-      this.loginWithFacebook();
+     return  this.loginWithFacebook();
     }
     if (loginMethod === 'github') {
-      this.loginWithGitHub();
+     return  this.loginWithGitHub();
     }
   }
 
@@ -59,17 +60,17 @@ export class AuthFirebaseService implements AuthService {
     this.afAuth.auth.signOut().then();
   }
 
-  private loginWithGoogle() {
+  private loginWithGoogle(): Promise<any> {
 
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider()).catch(error => console.log(error));
+   return  this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
-  private loginWithFacebook() {
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider()).catch(error => console.log(error));
+  private loginWithFacebook(): Promise<any> {
+    return this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
   }
 
-  private loginWithGitHub() {
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GithubAuthProvider()).catch(error => console.log(error));
+  private loginWithGitHub(): Promise<any> {
+    return this.afAuth.auth.signInWithRedirect(new firebase.auth.GithubAuthProvider());
 
   }
 }

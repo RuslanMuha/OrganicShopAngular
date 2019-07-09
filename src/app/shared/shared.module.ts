@@ -28,17 +28,19 @@ import {AddProductComponent} from '../admin/add-product/add-product.component';
 import {EditProductComponent} from '../admin/edit-product/edit-product.component';
 import { PaypalComponent } from './paypal/paypal.component';
 import {NgxPayPalModule} from 'ngx-paypal';
+import {AdminGuard, AuthGuard} from './auth-guard';
 const routes: Routes = [
-  {path: 'admin/orders', component: AdminOrders},
-  {path: 'user/orders', component: UserOrders},
-  {path: 'admin/products', component: ProductsComponent},
+  {path: 'admin/orders', component: AdminOrders, canActivate: [AdminGuard]},
+  {path: 'user/orders', component: UserOrders, canActivate: [AuthGuard]},
+  {path: 'admin/products', component: ProductsComponent, canActivate: [AdminGuard]},
   {path: 'user/home', component: HomeComponent},
   {path: 'user/shopping-cart', component: ShoppingCartComponent},
-  {path: 'logout', component: LogoutComponent},
+  {path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'admin/products/add', component: AddProductComponent},
-  {path: 'admin/products/edit/:id', component: EditProductComponent},
-  {path: 'paypal', component: PaypalComponent},
+  {path: 'admin/products/edit/:id', component: EditProductComponent, canActivate: [AdminGuard]},
+  {path: 'paypal', component: PaypalComponent, canActivate: [AuthGuard]},
+  {path: '', redirectTo: 'user/home', pathMatch: 'full'},
   // TODO for all components
 ];
 @NgModule({

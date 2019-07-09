@@ -3,6 +3,7 @@ import {AuthService} from '../auth-service';
 import {CartService} from '../../user/cart.service';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 export interface Link {
   path: string;
@@ -19,7 +20,7 @@ export interface Link {
 export class OshopNavComponent implements OnInit {
   navLinks: Link[] = [{path: 'user/home', label: 'Home', icon: 'home'}, {
     path: 'user/shopping-cart',
-    label: 'Shopping-cart',
+    label: '',
     icon: 'shopping_cart'
   }
   ];
@@ -55,6 +56,6 @@ export class OshopNavComponent implements OnInit {
   }
 
   isCart(label: string) {
-    return label === 'Shopping-cart' && this.quantity !== '0';
+    return label === '' && this.quantity !== '0';
   }
 }
